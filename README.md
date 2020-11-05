@@ -8,7 +8,7 @@ Generate plugin infos helper
 First add the following to your `composer.json` file:
 ```json
 "require": {
-  "srag/generateolugininfoshelper": ">=1.0.0"
+  "srag/generateplugininfoshelper": ">=1.0.0"
 },
 ```
 And run a `composer install`.

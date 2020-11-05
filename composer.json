@@ -1,7 +1,7 @@
 {
-  "name": "srag/generateolugininfoshelper",
+  "name": "srag/generateplugininfoshelper",
   "description": "Generate plugin infos helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "library",
   "keywords": [
     "Generate",
