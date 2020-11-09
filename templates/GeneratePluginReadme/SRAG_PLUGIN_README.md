@@ -2,9 +2,11 @@
 
 # __ILIAS_PLUGIN_NAME__ ILIAS Plugin
 
+__SHORT_DESCRIPTION__
+
 This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://studer-raimann.ch)
 
-__SHORT_DESCRIPTION__
+This project is licensed under the __LICENSE__ license
 
 ## Installation
 
