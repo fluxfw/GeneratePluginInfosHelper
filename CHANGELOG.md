@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.2.0]
+- Library template
+
 ## [2.1.5]
 - Fix library template
 
