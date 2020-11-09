@@ -22,7 +22,8 @@ final class GeneratePluginReadme
     const PLUGIN_COMPOSER_JSON = "composer.json";
     const PLUGIN_LONG_DESCRIPTION = "doc/DESCRIPTION.md";
     const PLUGIN_README = "README.md";
-    const PLUGIN_README_DEFAULT_TEMPLATE_FILE = __DIR__ . "/../templates/GeneratePluginReadme/SRAG_PLUGIN_README.md";
+    const PLUGIN_README_TEMPLATE_FOLDER = __DIR__ . "/../templates/GeneratePluginReadme";
+    const PLUGIN_README_TEMPLATE_FOLDER_SUFFIX = "_" . self::PLUGIN_README;
     /**
      * @var self|null
      */
@@ -119,11 +120,22 @@ final class GeneratePluginReadme
             "VERSION"                        => strval($plugin_composer_json->version)
         ];
 
-        if (!empty($plugin_composer_json->extra->GeneratePluginReadme)) {
-            $template_file = self::$plugin_root . "/" . $plugin_composer_json->extra->GeneratePluginReadme;
+        if (!empty($plugin_composer_json->extra->generate_plugin_readme_template)) {
+            if (!file_exists($template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $plugin_composer_json->extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+                if (!file_exists($template_file = self::$plugin_root . "/" . $plugin_composer_json->extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+                    echo "Invalid composer.json > extra > generate_plugin_readme_template
+ ";
+                    die(1);
+                }
+            }
         } else {
-            $template_file = self::PLUGIN_README_DEFAULT_TEMPLATE_FILE;
+            echo "Please set composer.json > extra > generate_plugin_readme_template
+ ";
+            die(1);
         }
+
+        echo "Use template " . $template_file . "
+";
         $plugin_readme = file_get_contents($template_file);
 
         foreach ($placeholders as $key => $value) {
