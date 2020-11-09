@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.3.0]
+- Generate readme
+
 ## [2.2.1]
 - Library template
 
