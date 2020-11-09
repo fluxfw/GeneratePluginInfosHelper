@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.2.1]
+- Library template
+
 ## [2.2.0]
 - Library template
 
