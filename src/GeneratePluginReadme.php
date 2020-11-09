@@ -86,11 +86,17 @@ final class GeneratePluginReadme
     {
         $plugin_composer_json = json_decode(file_get_contents(self::$plugin_root . "/" . self::PLUGIN_COMPOSER_JSON), true);
 
+        if (file_exists(self::$plugin_root . "/" . self::PLUGIN_README)) {
+            $old_readme = file_get_contents(self::$plugin_root . "/" . self::PLUGIN_README);
+        } else {
+            $old_readme = "";
+        }
+
         echo "(Re)generate " . self::PLUGIN_README . "
 ";
 
         if (file_exists(self::$plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)) {
-            $long_description = str_replace("./", "./doc/", trim(file_get_contents(self::$plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
+            $long_description = str_replace("./images/", "./doc/images/", trim(file_get_contents(self::$plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
         } else {
             $long_description = "";
         }
@@ -144,6 +150,14 @@ final class GeneratePluginReadme
             $plugin_readme = str_replace("__" . $key . "__", $value, $plugin_readme);
         }
 
-        file_put_contents(self::$plugin_root . "/" . self::PLUGIN_README, $plugin_readme);
+        if ($old_readme !== $plugin_readme) {
+            echo "Store changes in " . self::PLUGIN_README . "
+";
+
+            file_put_contents(self::$plugin_root . "/" . self::PLUGIN_README, $plugin_readme);
+        } else {
+            echo "No changes in " . self::PLUGIN_README . "
+";
+        }
     }
 }

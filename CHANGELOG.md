@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.3.1]
+- Only store README.md if changed
+- Only replace images docs links
+
 ## [2.3.0]
 - Generate readme
 
