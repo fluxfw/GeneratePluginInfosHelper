@@ -1,7 +1,7 @@
 {
   "name": "srag/generateplugininfoshelper",
   "description": "Generate plugin infos helper",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "extra": {
     "generate_plugin_readme_template": "SRAG_LIBRARY"
   },
@@ -39,7 +39,7 @@
     "sort-packages": true
   },
   "scripts": {
-    "pre-autoload-dump": [
+    "generate-plugin-readme": [
       "srag\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
