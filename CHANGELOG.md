@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.5]
+- Fix library template
+
 ## [2.1.4]
 - Fix other missing variables in composer.json
 
