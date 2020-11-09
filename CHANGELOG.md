@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.0]
+- Required template declaration in composer.json
+- Library template
+
 ## [2.0.0]
 - Generate short and long description in README.md
 - Generate licence in README.md
