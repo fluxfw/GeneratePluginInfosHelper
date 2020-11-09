@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.4]
+- Fix other missing variables in composer.json
+
 ## [2.1.3]
 - Fix other missing variables in composer.json
 
