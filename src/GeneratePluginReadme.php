@@ -95,6 +95,14 @@ final class GeneratePluginReadme
             $long_description = "";
         }
 
+        $extra = $plugin_composer_json->extra;
+        if (empty($extra)) {
+            $extra = (object) [];
+        }
+        if (empty($extra->ilias_plugin)) {
+            $extra->ilias_plugin = (object) [];
+        }
+
         $placeholders = [
             "AUTHOR_EMAIL"                   => strval($plugin_composer_json->authors[0]->email),
             "AUTHOR_HOMEPAGE"                => strval($plugin_composer_json->authors[0]->homepage),
@@ -105,12 +113,12 @@ final class GeneratePluginReadme
             "KEYWORDS"                       => implode("\n", array_map(function (string $keyword) : string {
                 return "- " . $keyword;
             }, (array) $plugin_composer_json->keywords)),
-            "ILIAS_PLUGIN_BASE_SLOT_PATH"    => "Customizing/global/plugins/" . strval($plugin_composer_json->extra->ilias_plugin->slot),
-            "ILIAS_PLUGIN_ID"                => strval($plugin_composer_json->extra->ilias_plugin->id),
-            "ILIAS_PLUGIN_MAX_ILIAS_VERSION" => strval($plugin_composer_json->extra->ilias_plugin->ilias_max_version),
-            "ILIAS_PLUGIN_MIN_ILIAS_VERSION" => strval($plugin_composer_json->extra->ilias_plugin->ilias_min_version),
-            "ILIAS_PLUGIN_NAME"              => strval($plugin_composer_json->extra->ilias_plugin->name),
-            "ILIAS_PLUGIN_SLOT"              => strval($plugin_composer_json->extra->ilias_plugin->slot),
+            "ILIAS_PLUGIN_BASE_SLOT_PATH"    => "Customizing/global/plugins/" . strval($extra->ilias_plugin->slot),
+            "ILIAS_PLUGIN_ID"                => strval($extra->ilias_plugin->id),
+            "ILIAS_PLUGIN_MAX_ILIAS_VERSION" => strval($extra->ilias_plugin->ilias_max_version),
+            "ILIAS_PLUGIN_MIN_ILIAS_VERSION" => strval($extra->ilias_plugin->ilias_min_version),
+            "ILIAS_PLUGIN_NAME"              => strval($extra->ilias_plugin->name),
+            "ILIAS_PLUGIN_SLOT"              => strval($extra->ilias_plugin->slot),
             "LICENSE"                        => strval($plugin_composer_json->license),
             "LONG_DESCRIPTION"               => $long_description,
             "NAME"                           => strval($plugin_composer_json->name),
@@ -120,9 +128,9 @@ final class GeneratePluginReadme
             "VERSION"                        => strval($plugin_composer_json->version)
         ];
 
-        if (!empty($plugin_composer_json->extra->generate_plugin_readme_template)) {
-            if (!file_exists($template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $plugin_composer_json->extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
-                if (!file_exists($template_file = self::$plugin_root . "/" . $plugin_composer_json->extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+        if (!empty($extra->generate_plugin_readme_template)) {
+            if (!file_exists($template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+                if (!file_exists($template_file = self::$plugin_root . "/" . $extra->generate_plugin_readme_template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
                     echo "Invalid composer.json > extra > generate_plugin_readme_template
  ";
                     die(1);

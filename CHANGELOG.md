@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.1]
+- Fix missing extra > ilias_plugin
+
 ## [2.1.0]
 - Required template declaration in composer.json
 - Library template
