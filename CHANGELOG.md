@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.4.1]
+- Possibility to run without composer script
+
 ## [2.4.0]
 - Possibility to run without composer script
 

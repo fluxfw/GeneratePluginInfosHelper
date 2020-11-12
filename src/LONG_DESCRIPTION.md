@@ -60,6 +60,8 @@ Complete your `composer.json` with
 
 ### Composer script
 
+#### Automatic
+
 ```json
   ...
   "pre-autoload-dump": [
@@ -67,6 +69,25 @@ Complete your `composer.json` with
       "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginPhpAndXml::generatePluginPhpAndXml"
     ]
   ...
+```
+
+```bash
+composer du
+```
+
+#### Manual
+
+```json
+  ...
+  "generate-plugin-php-and-xml": [
+    ...,
+     "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginPhpAndXml::generatePluginPhpAndXml"
+    ]
+  ...
+```
+
+```bash
+composer run generate-plugin-php-and-xml
 ```
 
 ### In code
@@ -97,7 +118,7 @@ Complete your `composer.json` with
 
 ### Composer script
 
-#### Automatic on `composer du`
+#### Automatic
 
 ```json
   ...
@@ -108,7 +129,11 @@ Complete your `composer.json` with
   ...
 ```
 
-#### Manually
+```bash
+composer du
+```
+
+#### Manual
 
 ```json
   ...
