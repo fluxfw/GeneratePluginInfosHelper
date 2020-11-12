@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.4.0]
+- Possibility to run without composer script
+
 ## [2.3.3]
 - Move requirements before installation
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
