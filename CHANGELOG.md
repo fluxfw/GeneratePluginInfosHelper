@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Move requirements before installation
+
 ## [2.3.2]
 - Generate readme
 
