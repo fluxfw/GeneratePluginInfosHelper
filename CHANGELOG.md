@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.4.2]
+- Pass template per code
+- Throw exception not die
+
 ## [2.4.1]
 - Possibility to run without composer script
 

@@ -5,6 +5,7 @@ namespace srag\GeneratePluginInfosHelper;
 use Closure;
 use Composer\Config;
 use Composer\Script\Event;
+use Exception;
 
 /**
  * Class GeneratePluginReadme
@@ -31,17 +32,17 @@ final class GeneratePluginReadme
     /**
      * @var string
      */
-    private $plugin_root;
+    private $project_root;
 
 
     /**
      * GeneratePluginReadme constructor
      *
-     * @param string $plugin_root
+     * @param string $project_root
      */
-    private function __construct(string $plugin_root)
+    private function __construct(string $project_root)
     {
-        $this->plugin_root = $plugin_root;
+        $this->project_root = $project_root;
     }
 
 
@@ -52,38 +53,38 @@ final class GeneratePluginReadme
      */
     public static function generatePluginReadme(Event $event)/*: void*/
     {
-        $plugin_root = rtrim(Closure::bind(function () : string {
+        $project_root = rtrim(Closure::bind(function () : string {
             return $this->baseDir;
         }, $event->getComposer()->getConfig(), Config::class)(), "/");
 
-        self::getInstance($plugin_root)->doGeneratePluginReadme();
+        self::getInstance($project_root)->doGeneratePluginReadme();
     }
 
 
     /**
-     * @param string $plugin_root
+     * @param string $project_root
      *
      * @return self
      */
-    public static function getInstance(string $plugin_root) : self
+    public static function getInstance(string $project_root) : self
     {
-        if (!isset(self::$instances[$plugin_root])) {
-            self::$instances[$plugin_root] = new self($plugin_root);
+        if (!isset(self::$instances[$project_root])) {
+            self::$instances[$project_root] = new self($project_root);
         }
 
-        return self::$instances[$plugin_root];
+        return self::$instances[$project_root];
     }
 
 
     /**
-     *
+     * @param string|null $template
      */
-    public function doGeneratePluginReadme()/*: void*/
+    public function doGeneratePluginReadme(/*?*/ string $template = null)/*: void*/
     {
-        $plugin_composer_json = json_decode(file_get_contents($this->plugin_root . "/" . self::PLUGIN_COMPOSER_JSON), true);
+        $plugin_composer_json = json_decode(file_get_contents($this->project_root . "/" . self::PLUGIN_COMPOSER_JSON), true);
 
-        if (file_exists($this->plugin_root . "/" . self::PLUGIN_README)) {
-            $old_readme = file_get_contents($this->plugin_root . "/" . self::PLUGIN_README);
+        if (file_exists($this->project_root . "/" . self::PLUGIN_README)) {
+            $old_readme = file_get_contents($this->project_root . "/" . self::PLUGIN_README);
         } else {
             $old_readme = "";
         }
@@ -91,8 +92,8 @@ final class GeneratePluginReadme
         echo "(Re)generate " . self::PLUGIN_README . "
 ";
 
-        if (file_exists($this->plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)) {
-            $long_description = str_replace("../docs/", "./doc/", trim(file_get_contents($this->plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
+        if (file_exists($this->project_root . "/" . self::PLUGIN_LONG_DESCRIPTION)) {
+            $long_description = str_replace("../docs/", "./doc/", trim(file_get_contents($this->project_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
         } else {
             $long_description = "";
         }
@@ -122,20 +123,22 @@ final class GeneratePluginReadme
             "VERSION"                        => strval($plugin_composer_json["version"] ?? "")
         ];
 
-        if (!empty($plugin_composer_json["extra"]["generate_plugin_readme_template"] ?? "")) {
+        if (empty($template)) {
+            $template = ($plugin_composer_json["extra"]["generate_plugin_readme_template"] ?? "");
+        }
+
+        if (!empty($template)) {
             if (!file_exists(
-                $template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $plugin_composer_json["extra"]["generate_plugin_readme_template"] . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)
+                $template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)
             ) {
-                if (!file_exists($template_file = $this->plugin_root . "/" . $plugin_composer_json["extra"]["generate_plugin_readme_template"] . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
-                    echo "Invalid composer.json > extra > generate_plugin_readme_template
- ";
-                    die(1);
+                if (!file_exists($template_file = $this->project_root . "/" . $template . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+                    throw new Exception("Invalid composer.json > extra > generate_plugin_readme_template
+ ");
                 }
             }
         } else {
-            echo "Please set composer.json > extra > generate_plugin_readme_template
- ";
-            die(1);
+            throw new Exception("Please set composer.json > extra > generate_plugin_readme_template
+ ");
         }
 
         echo "Use template " . $template_file . "
@@ -150,7 +153,7 @@ final class GeneratePluginReadme
             echo "Store changes in " . self::PLUGIN_README . "
 ";
 
-            file_put_contents($this->plugin_root . "/" . self::PLUGIN_README, $plugin_readme);
+            file_put_contents($this->project_root . "/" . self::PLUGIN_README, $plugin_readme);
         } else {
             echo "No changes in " . self::PLUGIN_README . "
 ";
