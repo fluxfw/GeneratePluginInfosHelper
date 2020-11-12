@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [2.3.3]
 - Move requirements before installation
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
 
