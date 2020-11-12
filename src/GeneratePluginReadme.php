@@ -25,27 +25,23 @@ final class GeneratePluginReadme
     const PLUGIN_README_TEMPLATE_FOLDER = __DIR__ . "/../templates/GeneratePluginReadme";
     const PLUGIN_README_TEMPLATE_FOLDER_SUFFIX = "_" . self::PLUGIN_README;
     /**
-     * @var self|null
+     * @var self[]
      */
-    private static $instance = null;
+    private static $instances = [];
     /**
      * @var string
      */
-    private static $plugin_root = "";
-    /**
-     * @var Event
-     */
-    private $event;
+    private $plugin_root;
 
 
     /**
      * GeneratePluginReadme constructor
      *
-     * @param Event $event
+     * @param string $plugin_root
      */
-    private function __construct(Event $event)
+    private function __construct(string $plugin_root)
     {
-        $this->event = $event;
+        $this->plugin_root = $plugin_root;
     }
 
 
@@ -56,38 +52,38 @@ final class GeneratePluginReadme
      */
     public static function generatePluginReadme(Event $event)/*: void*/
     {
-        self::$plugin_root = rtrim(Closure::bind(function () : string {
+        $plugin_root = rtrim(Closure::bind(function () : string {
             return $this->baseDir;
         }, $event->getComposer()->getConfig(), Config::class)(), "/");
 
-        self::getInstance($event)->doGeneratePluginReadme();
+        self::getInstance($plugin_root)->doGeneratePluginReadme();
     }
 
 
     /**
-     * @param Event $event
+     * @param string $plugin_root
      *
      * @return self
      */
-    private static function getInstance(Event $event) : self
+    public static function getInstance(string $plugin_root) : self
     {
-        if (self::$instance === null) {
-            self::$instance = new self($event);
+        if (!isset(self::$instances[$plugin_root])) {
+            self::$instances[$plugin_root] = new self($plugin_root);
         }
 
-        return self::$instance;
+        return self::$instances[$plugin_root];
     }
 
 
     /**
      *
      */
-    private function doGeneratePluginReadme()/*: void*/
+    public function doGeneratePluginReadme()/*: void*/
     {
-        $plugin_composer_json = json_decode(file_get_contents(self::$plugin_root . "/" . self::PLUGIN_COMPOSER_JSON), true);
+        $plugin_composer_json = json_decode(file_get_contents($this->plugin_root . "/" . self::PLUGIN_COMPOSER_JSON), true);
 
-        if (file_exists(self::$plugin_root . "/" . self::PLUGIN_README)) {
-            $old_readme = file_get_contents(self::$plugin_root . "/" . self::PLUGIN_README);
+        if (file_exists($this->plugin_root . "/" . self::PLUGIN_README)) {
+            $old_readme = file_get_contents($this->plugin_root . "/" . self::PLUGIN_README);
         } else {
             $old_readme = "";
         }
@@ -95,8 +91,8 @@ final class GeneratePluginReadme
         echo "(Re)generate " . self::PLUGIN_README . "
 ";
 
-        if (file_exists(self::$plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)) {
-            $long_description = str_replace("../docs/", "./doc/", trim(file_get_contents(self::$plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
+        if (file_exists($this->plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)) {
+            $long_description = str_replace("../docs/", "./doc/", trim(file_get_contents($this->plugin_root . "/" . self::PLUGIN_LONG_DESCRIPTION)));
         } else {
             $long_description = "";
         }
@@ -130,7 +126,7 @@ final class GeneratePluginReadme
             if (!file_exists(
                 $template_file = self::PLUGIN_README_TEMPLATE_FOLDER . "/" . $plugin_composer_json["extra"]["generate_plugin_readme_template"] . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)
             ) {
-                if (!file_exists($template_file = self::$plugin_root . "/" . $plugin_composer_json["extra"]["generate_plugin_readme_template"] . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
+                if (!file_exists($template_file = $this->plugin_root . "/" . $plugin_composer_json["extra"]["generate_plugin_readme_template"] . self::PLUGIN_README_TEMPLATE_FOLDER_SUFFIX)) {
                     echo "Invalid composer.json > extra > generate_plugin_readme_template
  ";
                     die(1);
@@ -154,7 +150,7 @@ final class GeneratePluginReadme
             echo "Store changes in " . self::PLUGIN_README . "
 ";
 
-            file_put_contents(self::$plugin_root . "/" . self::PLUGIN_README, $plugin_readme);
+            file_put_contents($this->plugin_root . "/" . self::PLUGIN_README, $plugin_readme);
         } else {
             echo "No changes in " . self::PLUGIN_README . "
 ";

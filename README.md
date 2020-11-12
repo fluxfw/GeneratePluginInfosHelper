@@ -32,13 +32,6 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 
 Generate `plugin.php` and `plugin.xml` and `LuceneObjectDefinition.xml` for ILIAS plugins from `composer.json`
 
-```json
-  "pre-autoload-dump": [
-    ...,
-      "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginPhpAndXml::generatePluginPhpAndXml"
-    ]
-```
-
 Complete your `composer.json` with
 
 ```json
@@ -75,9 +68,46 @@ Complete your `composer.json` with
   ...
 ```
 
+### Composer script
+
+```json
+  ...
+  "pre-autoload-dump": [
+    ...,
+      "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginPhpAndXml::generatePluginPhpAndXml"
+    ]
+  ...
+```
+
+### In code
+
+```php
+...
+use srag\GeneratePluginInfosHelper\x\GeneratePluginPhpAndXml; 
+...
+GeneratePluginPhpAndXml::getInstance("plugin_root")->doGeneratePluginPhpAndXml();
+...
+```
+
 ## GeneratePluginReadme
 
 Auto generate `README.md`
+
+Complete your `composer.json` with
+
+```json
+  ...
+  "extra": {
+    ...
+    "generate_plugin_readme_template": "..."
+    ...
+  }
+  ...
+```
+
+### Composer script
+
+#### Automatic on `composer du`
 
 ```json
   ...
@@ -86,12 +116,31 @@ Auto generate `README.md`
      "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginReadme::generatePluginReadme"
     ]
   ...
-  "extra": {
-    ...
-    "generate_plugin_readme_template": "..."
-    ...
-  }
+```
+
+#### Manually
+
+```json
   ...
+  "generate-plugin-readme": [
+    ...,
+     "srag\\GeneratePluginInfosHelper\\x\\GeneratePluginReadme::generatePluginReadme"
+    ]
+  ...
+```
+
+```bash
+composer run generate-plugin-readme
+```
+
+### In code
+
+```php
+...
+use srag\GeneratePluginInfosHelper\x\GeneratePluginReadme; 
+...
+GeneratePluginReadme::getInstance("plugin_root")->doGeneratePluginReadme();
+...
 ```
 
 ## Requirements
