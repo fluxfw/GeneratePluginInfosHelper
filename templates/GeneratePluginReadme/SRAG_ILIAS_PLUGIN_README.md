@@ -8,6 +8,11 @@ This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://stude
 
 This project is licensed under the __LICENSE__ license
 
+## Requirements
+
+* ILIAS __ILIAS_PLUGIN_MIN_ILIAS_VERSION__ - __ILIAS_PLUGIN_MAX_ILIAS_VERSION__
+* PHP __PHP_VERSION__
+
 ## Installation
 
 Start at your ILIAS root directory
@@ -23,11 +28,6 @@ Update, activate and config the plugin in the ILIAS Plugin Administration
 ## Description
 
 __LONG_DESCRIPTION__
-
-## Requirements
-
-* ILIAS __ILIAS_PLUGIN_MIN_ILIAS_VERSION__ - __ILIAS_PLUGIN_MAX_ILIAS_VERSION__
-* PHP __PHP_VERSION__
 
 ## Adjustment suggestions
 
