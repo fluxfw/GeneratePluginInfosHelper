@@ -2,6 +2,7 @@
 
 ## [x]
 - Move requirements before installation
+- Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
 
 ## [2.3.2]
 - Generate readme
