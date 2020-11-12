@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.4.3]
+- Log only on composer script
+
 ## [2.4.2]
 - Pass template per code
 - Throw exception not die
