@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.6.0]
+- Possibility to pass `$version` manually
+
 ## [2.5.0]
 - Possibility to pass `$extra_ilias_plugin` manually
 
