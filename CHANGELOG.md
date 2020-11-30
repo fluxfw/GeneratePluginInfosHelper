@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.6.2]
+- Fix generate `plugin.xml`
+
 ## [2.6.1]
 - Update readme
 - Update `Adjustment suggestions`
