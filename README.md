@@ -2,7 +2,7 @@
 
 # srag/generateplugininfoshelper Library
 
-Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ...
+Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json
 
 This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://studer-raimann.ch)
 
