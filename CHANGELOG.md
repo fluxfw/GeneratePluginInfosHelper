@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.6.1]
+- Update readme
+- Update `Adjustment suggestions`
+
 ## [2.6.0]
 - Possibility to pass `$version` manually
 
