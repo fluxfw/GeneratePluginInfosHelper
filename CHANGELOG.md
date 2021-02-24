@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.9.0]
+- Gitlab composer registry
+
 ## [2.8.0]
 - Add `supports_cli_setup` support
 

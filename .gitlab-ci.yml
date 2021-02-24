@@ -1,2 +1,3 @@
 include:
   - https://auto-version-tag-ci.fluxlabs.ch/auto_version_tag_ci.yml
+  - https://auto-version-tag-ci.fluxlabs.ch/gitlab_composer_registry_publish_ci.yml
