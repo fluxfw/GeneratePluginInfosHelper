@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.9.1]
+- Change to fluxlabs prefix
+
 ## [2.9.0]
 - Gitlab composer registry
 
