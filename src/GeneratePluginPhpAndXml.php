@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\GeneratePluginInfosHelper;
+namespace fluxfw\GeneratePluginInfosHelper;
 
 use Closure;
 use Composer\Config;
@@ -10,7 +10,7 @@ use stdClass;
 /**
  * Class GeneratePluginPhpAndXml
  *
- * @package srag\GeneratePluginInfosHelper
+ * @package fluxfw\GeneratePluginInfosHelper
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
