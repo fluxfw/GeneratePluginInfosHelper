@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.9.2]
+- Revert gitlab composer registry
+
 ## [2.9.1]
 - Change to fluxfw prefix
 
