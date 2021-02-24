@@ -31,7 +31,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\\GeneratePluginInfosHelper\\": "src/"
+      "fluxfw\\GeneratePluginInfosHelper\\": "src/"
     }
   },
   "config": {
@@ -41,7 +41,7 @@
   },
   "scripts": {
     "generate-plugin-readme": [
-      "srag\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
+      "fluxfw\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
 }
