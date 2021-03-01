@@ -1,7 +1,7 @@
 {
-  "name": "fluxfw/generateplugininfoshelper",
+  "name": "srag/generateplugininfoshelper",
   "description": "Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "extra": {
     "generate_plugin_readme_template": "SRAG_LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
@@ -31,7 +31,7 @@
   },
   "autoload": {
     "psr-4": {
-      "fluxfw\\GeneratePluginInfosHelper\\": "src/"
+      "srag\\GeneratePluginInfosHelper\\": "src/"
     }
   },
   "config": {
@@ -41,7 +41,7 @@
   },
   "scripts": {
     "generate-plugin-readme": [
-      "fluxfw\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
+      "srag\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
 }

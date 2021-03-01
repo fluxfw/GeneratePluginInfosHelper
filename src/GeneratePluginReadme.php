@@ -1,6 +1,6 @@
 <?php
 
-namespace fluxfw\GeneratePluginInfosHelper;
+namespace srag\GeneratePluginInfosHelper;
 
 use Closure;
 use Composer\Config;
@@ -10,7 +10,7 @@ use Exception;
 /**
  * Class GeneratePluginReadme
  *
- * @package fluxfw\GeneratePluginInfosHelper
+ * @package srag\GeneratePluginInfosHelper
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
