@@ -13,7 +13,7 @@
     "infos",
     "plugin"
   ],
-  "homepage": "https://github.com/studer-raimann/GeneratePluginInfosHelper",
+  "homepage": "https://github.com/fluxfw/GeneratePluginInfosHelper",
   "license": "GPL-3.0-only",
   "authors": [
     {
