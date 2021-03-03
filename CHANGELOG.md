@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.9.4]
+- Update project url
+
 ## [2.9.3]
 - Revert change to fluxfw prefix
 
