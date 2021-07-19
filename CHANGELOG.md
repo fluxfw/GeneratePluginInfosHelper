@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.11.0]
+- Min PHP 7.2
+
 ## [2.10.4]
 - Change utils url
 
