@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.13.0]
+- Clean up
+
 ## [2.12.0]
 - Deprecate GeneratePluginReadme
 

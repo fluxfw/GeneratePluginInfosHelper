@@ -1,7 +1,7 @@
 {
   "name": "srag/generateplugininfoshelper",
   "description": "Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "type": "library",
   "keywords": [
     "generate",
@@ -9,16 +9,7 @@
     "infos",
     "plugin"
   ],
-  "homepage": "https://github.com/fluxapps/GeneratePluginInfosHelper",
   "license": "GPL-3.0-only",
-  "authors": [
-    {
-      "name": "fluxlabs",
-      "email": "support@fluxlabs.ch",
-      "homepage": "https://fluxlabs.ch",
-      "role": "Developer"
-    }
-  ],
   "require": {
     "php": ">=7.2"
   },
@@ -31,10 +22,5 @@
     "classmap-authoritative": true,
     "optimize-autoloader": true,
     "sort-packages": true
-  },
-  "scripts": {
-    "update-version": [
-      "srag\\GeneratePluginInfosHelper\\UpdateVersion::updateVersion"
-    ]
   }
 }
